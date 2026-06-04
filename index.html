@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Ngoc Trieu | Dreamy Portfolio</title>
+    <!-- Import Bubble Fonts from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables cho hệ màu Dreamy */
+        :root {
+            --bg-gradient: linear-gradient(135deg, #b4d8e7 0%, #f7d6e0 100%);
+            --card-bg: rgba(255, 255, 255, 0.65);
+            --text-main: #5a7289;
+            --white: #ffffff;
+            --rainbow: linear-gradient(90deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Hiệu ứng lấp lánh (Animated Twinkling Stars) */
+        .sparkles {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .star {
+            position: absolute;
+            color: white;
+            font-size: 1.5rem;
+            animation: twinkle 3s infinite ease-in-out alternate;
+        }
+        /* Random vị trí và delay cho các ngôi sao */
+        .star:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; font-size: 2rem; }
+        .star:nth-child(2) { top: 30%; left: 80%; animation-delay: 1s; font-size: 1.2rem; }
+        .star:nth-child(3) { top: 60%; left: 15%; animation-delay: 2s; font-size: 1.8rem; }
+        .star:nth-child(4) { top: 80%; left: 70%; animation-delay: 0.5s; font-size: 1.5rem; }
+        .star:nth-child(5) { top: 40%; left: 50%; animation-delay: 1.5s; font-size: 2.2rem; }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); text-shadow: 0 0 0px rgba(255,255,255,0); }
+            100% { opacity: 1; transform: scale(1.2); text-shadow: 0 0 10px rgba(255,255,255,0.8); }
+        }
+
+        /* Typography & Cầu vồng */
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
+            letter-spacing: 1px;
+        }
+        .rainbow-text {
+            background: var(--rainbow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.3);
+        }
+
+        /* Layout & Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        /* Glassmorphism Cards */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Header Style */
+        header {
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        header h1 {
+            font-size: 4rem;
+            margin: 0;
+        }
+        header p {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #7b94b0;
+        }
+
+        /* Image Highlights & Reveal Effects */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .img-highlight {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 30px;
+            border: 3px dashed #b4d8e7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .img-highlight img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Hiệu ứng Reveal (Lật thẻ hoặc hiện nội dung khi hover) */
+        .reveal-box {
+            position: relative;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 15px;
+            margin-top: 1rem;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .reveal-box .reveal-content {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        .reveal-box:hover .reveal-content {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        .reveal-box span.icon { font-size: 1.5rem; margin-right: 10px; }
+
+        /* Hobbies Grid */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .hobby-item {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid #f7d6e0;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--bg-gradient);
+            color: #fff;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin: 0.3rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Contact */
+        .contact-links a {
+            display: inline-block;
+            margin-right: 1rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.5);
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+        .contact-links a:hover { background: #fff; }
+
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animation sao lấp lánh nền -->
+    <div class="sparkles">
+        <div class="star">✨</div>
+        <div class="star">★</div>
+        <div class="star">✨</div>
+        <div class="star">★</div>
+        <div class="star">✨</div>
+    </div>
+
+    <header>
+        <h1 class="rainbow-text">Le Ngoc Trieu</h1>
+        <p>Aesthetic Dreamer ⋆ Business Enthusiast ⋆ Creator</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- SECTION 1: ABOUT ME -->
+        <section class="card">
+            <h2 class="rainbow-text">⋆ About Me</h2>
+            <div class="about-grid">
+                <!-- Chỗ chèn ảnh cá nhân -->
+                <div class="img-highlight">
+                    <span style="color:#b4d8e7; font-weight:bold;">[Insert Your Photo Here]</span>
+                    <!-- Khi có ảnh, m thay dòng chữ trên bằng: <img src="link-anh-cua-m.jpg" alt="My Profile"> -->
+                </div>
+                <div>
+                    <p>Hello! I am a passionate sophomore majoring in International Business. I love blending analytical business strategies with creative aesthetics. Always striving for excellence and finding beauty in the little details.</p>
+                    
+                    <!-- Element Reveal: Đưa chuột vào để mở ra -->
+                    <div class="reveal-box">
+                        <strong><span class="icon">🌸</span> Secret Fact (Hover me!)</strong>
+                        <div class="reveal-content">
+                            <p>I aim for an IELTS Band 8.0+ and strive to graduate with High Distinction honors. I'm also deeply interested in AI's impact on modern marketing!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: EDUCATION -->
+        <section class="card">
+            <h2 class="rainbow-text">⋆ Education</h2>
+            <h3>Foreign Trade University (FTU)</h3>
+            <p><strong>Major:</strong> International Business (High-Quality Program)</p>
+            <p><strong>Status:</strong> Sophomore (K63) | 2024 - 2028</p>
+            <p>Focusing on global supply chains, international trade regulations, and modern marketing frameworks (PESTEL, CSR Pyramids).</p>
+        </section>
+
+        <!-- SECTION 3: SKILLS -->
+        <section class="card">
+            <h2 class="rainbow-text">⋆ Superpowers (Skills)</h2>
+            <div style="margin-top: 1rem;">
+                <span class="tag">Market Analysis</span>
+                <span class="tag">Digital Content Creation</span>
+                <span class="tag">Video Editing (CapCut)</span>
+                <span class="tag">AI Tools & Prompting</span>
+                <span class="tag">Research & Academic Writing</span>
+                <span class="tag">English (Fluent)</span>
+            </div>
+        </section>
+
+        <!-- SECTION 4: HOBBIES -->
+        <section class="card">
+            <h2 class="rainbow-text">⋆ Things I Love</h2>
+            <div class="hobbies-grid">
+                <div class="hobby-item">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎧</div>
+                    <strong>Music & Fandoms</strong>
+                    <p style="font-size: 0.9rem; color: #777;">Following K-pop artists, especially ENHYPEN (Heeseung).</p>
+                </div>
+                <div class="hobby-item">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎀</div>
+                    <strong>Aesthetic Fashion</strong>
+                    <p style="font-size: 0.9rem; color: #777;">American Retro & Ulzzang styles, oversized tees & wide-leg trousers.</p>
+                </div>
+                <div class="hobby-item">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🧸</div>
+                    <strong>Handmade Crafts</strong>
+                    <p style="font-size: 0.9rem; color: #777;">Collecting blindboxes, handmade jewelry, and crochet flowers.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: CONTACT -->
+        <section class="card">
+            <h2 class="rainbow-text">⋆ Let's Connect</h2>
+            <p>Feel free to reach out to me for collaborations, case studies, or just to share aesthetic finds!</p>
+            <div class="contact-links">
+                <a href="mailto:your.email@gmail.com">💌 Email Me</a>
+                <a href="#">✨ LinkedIn</a>
+                <a href="#">📸 Instagram</a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer nhẹ nhàng -->
+    <footer style="text-align: center; padding: 2rem; color: #7b94b0; font-weight: 600;">
+        © 2026 Le Ngoc Trieu. Built with magic & stardust ⋆
+    </footer>
+
+</body>
+</html>
