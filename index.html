@@ -42,7 +42,6 @@
             100% { opacity: 1; transform: translateY(-15px) scale(1.2) rotate(15deg); }
         }
 
-        /* --- TEXT TYPOGRAPHY (CHỮ BUBBLE 3D) --- */
         .bubble-font {
             font-family: 'DynaPuff', cursive;
             color: white;
@@ -51,6 +50,20 @@
             text-align: center;
         }
 
+        .marquee-container {
+            max-width: 650px; margin: 20px auto 0;
+            background: rgba(255,255,255,0.6);
+            border: 3px dashed #8da6ce; border-radius: 20px;
+            padding: 10px; overflow: hidden; white-space: nowrap;
+            box-shadow: 3px 3px 0px #8da6ce;
+        }
+        .marquee-text {
+            display: inline-block;
+            animation: scrollText 12s linear infinite;
+            font-weight: bold; color: #5c7ca8; font-size: 1.2rem; letter-spacing: 2px;
+        }
+        @keyframes scrollText { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        
         header {
             text-align: center;
             margin-bottom: 5rem;
@@ -106,46 +119,58 @@
 
         .card:hover { transform: translateY(-8px); }
 
-        .card-title {
-            font-size: 3rem;
-            margin-top: -5rem; 
-            margin-bottom: 2rem;
-            display: inline-block;
-            padding: 0 1rem;
+        .washi-tape {
+            position: absolute; top: -18px; left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 160px; height: 35px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 2px dashed white;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            z-index: 5;
         }
 
-        /* --- MÀU SẮC RIÊNG CHO TỪNG MỤC TỪ ẢNH REFERENCE --- */
-        .card-blue {
-            background: linear-gradient(180deg, #ffffff 10%, #d4ebf2 100%);
-            border-color: #b3dcf2;
+        .card-title { font-size: 3rem; margin-top: -5.5rem; margin-bottom: 2rem; display: inline-block; padding: 0 1rem; position: relative; z-index: 6; }
+
+        .sticker {
+            position: absolute;
+            width: 120px;
+            height: auto;
+            z-index: 15;
+            filter: drop-shadow(3px 5px 8px rgba(0,0,0,0.15));
+            transition: transform 0.3s;
+            cursor: pointer;
         }
+        .sticker:hover { transform: scale(1.15) rotate(5deg); }
+        
+        .stk-top-right { top: -30px; right: -20px; transform: rotate(12deg); }
+        .stk-bottom-right { bottom: -25px; right: -15px; transform: rotate(-8deg); }
+        .stk-bottom-left { bottom: -10px; left: -30px; transform: rotate(-15deg); width: 140px; }
+        
+
+        .card-blue { background: linear-gradient(180deg, #ffffff 10%, #d4ebf2 100%); border-color: #b3dcf2; }
         .card-blue .card-title { color: #82c4e6; -webkit-text-stroke: 2px white; text-shadow: 4px 4px 0px #b3dcf2; }
+        .card-blue .washi-tape { border-color: #82c4e6; background: rgba(212, 235, 242, 0.8); }
 
-        .card-pink {
-            background: linear-gradient(180deg, #ffffff 10%, #fcd5ce 100%);
-            border-color: #ffb5a7;
-        }
+        .card-yellow { background: linear-gradient(180deg, #ffffff 10%, #fff4cc 100%); border-color: #ffe066; }
+        .card-yellow .card-title { color: #fcc203; -webkit-text-stroke: 2px white; text-shadow: 4px 4px 0px #ffe066; }
+        .card-yellow .washi-tape { border-color: #fcc203; background: rgba(255, 244, 204, 0.8); transform: translateX(-50%) rotate(2deg); }
+        
+        .card-pink { background: linear-gradient(180deg, #ffffff 10%, #fcd5ce 100%); border-color: #ffb5a7; }
         .card-pink .card-title { color: #f28482; -webkit-text-stroke: 2px white; text-shadow: 4px 4px 0px #ffb5a7; }
+        .card-pink .washi-tape { border-color: #f28482; background: rgba(252, 213, 206, 0.8); transform: translateX(-50%) rotate(3deg); }
 
-        .card-purple {
-            background: linear-gradient(180deg, #ffffff 10%, #e8dff5 100%);
-            border-color: #d0bdf4;
-        }
+        .card-purple { background: linear-gradient(180deg, #ffffff 10%, #e8dff5 100%); border-color: #d0bdf4; }
         .card-purple .card-title { color: #a084dc; -webkit-text-stroke: 2px white; text-shadow: 4px 4px 0px #d0bdf4; }
+        .card-purple .washi-tape { border-color: #a084dc; background: rgba(232, 223, 245, 0.8); }
 
-        .card-green {
-            background: linear-gradient(180deg, #ffffff 10%, #dcf7d9 100%);
-            border-color: #a3e4a5;
-        }
+        .card-green { background: linear-gradient(180deg, #ffffff 10%, #dcf7d9 100%); border-color: #a3e4a5; }
         .card-green .card-title { color: #73c776; -webkit-text-stroke: 2px white; text-shadow: 4px 4px 0px #a3e4a5; }
+        .card-green .washi-tape { border-color: #73c776; background: rgba(220, 247, 217, 0.8); transform: translateX(-50%) rotate(2deg); }
 
-        .card-cyan {
-            background: linear-gradient(180deg, #ffffff 10%, #d0f4f0 100%);
-            border-color: #98e2d8;
-        }
+        .card-cyan { background: linear-gradient(180deg, #ffffff 10%, #d0f4f0 100%); border-color: #98e2d8; }
         .card-cyan .card-title { color: #4dc2b4; -webkit-text-stroke: 2px white; text-shadow: 4px 4px 0px #98e2d8; }
+        .card-cyan .washi-tape { border-color: #4dc2b4; background: rgba(208, 244, 240, 0.8); }
 
-        /* Nội dung bên trong Card */
         .card p {
             font-size: 1.2rem;
             line-height: 1.7;
@@ -162,8 +187,8 @@
         }
 
         .photo-box-1x1 {
-            width: 200px; /* Giữ cố định chiều rộng (m có thể chỉnh to nhỏ tùy ý) */
-            height: auto; /* Để auto để khung tự động kéo dài/thu ngắn ôm vừa ảnh */
+            width: 200px;
+            height: auto;
             flex-shrink: 0; 
             background-color: rgba(255,255,255,0.6);
             border: 4px dashed #82c4e6;
@@ -177,9 +202,9 @@
 
         .photo-box-1x1 img {
             width: 100%;
-            height: auto; /* Chiều cao tự động tỷ lệ thuận với chiều rộng */
-            object-fit: contain; /* Hiển thị full 100% ảnh, không bị cắt xén */
-            border-radius: 10px; /* Bo góc nhẹ cho bức ảnh bên trong nhìn cho mượt */
+            height: auto;
+            object-fit: contain;
+            border-radius: 10px;
         }
 
         @media (max-width: 768px) {
@@ -249,13 +274,16 @@
     <header>
         <h2>A DREAMER'S PORTFOLIO</h2>
         <h1 class="bubble-font">LE NGOC TRIEU</h1>
-        <p> UNIVERSITY STUDENT | INTERNATIONAL BUSINESS | DANCER</p>
+        <div class="marquee-container">
+            <span class="marquee-text">✦ UNIVERSITY STUDENT ✦ INTERNATIONAL BUSINESS @ FTU ✦ K-POP STAN ✦</span>
+        </div>
     </header>
 
     <div class="container">
 
-<!-- 1. ABOUT ME (BABY BLUE) -->
         <section class="card card-blue">
+            <div class="washi-tape"></div>
+            <img src="link-anh-sticker-1.png" class="sticker stk-top-right" style="opacity: 0.3;" alt="Sticker Placeholder">
             <h3 class="bubble-font card-title">About Me</h3>
             
             <div class="about-layout">
@@ -271,8 +299,22 @@
             
         </section>
 
-        <!-- 2. EDUCATION (PINK) -->
+        <section class="card card-yellow">
+            <div class="washi-tape"></div>
+            <img src="link-anh-sticker-2.png" class="sticker stk-bottom-right" style="opacity: 0.3;" alt="Sticker Placeholder">
+            <h3 class="bubble-font card-title">Personal Info</h3>
+            <ul>
+                <li><strong>Full Name:</strong> Le Ngoc Trieu</li>
+                <li><strong>Date of Birth:</strong> 02 / 09 / 2006</li>
+                <li><strong>Hometown:</strong> Nghe An, Vietnam</li>
+                <li><strong>Zodiac Sign:</strong> Virgo ♍</li>
+                <li><strong>MBTI:</strong> <em>ESTP-T</em></li>
+            </ul>
+        </section>
+        
         <section class="card card-pink">
+            <div class="washi-tape"></div>
+            <img src="link-anh-sticker-3.png" class="sticker stk-bottom-left" style="opacity: 0.3;" alt="Sticker Placeholder">
             <h3 class="bubble-font card-title">Education</h3>
             <p style="color: #d16b8a; font-size: 1.5rem;"><strong>Foreign Trade University (FTU)</strong></p>
             <p>✦ <strong>Major:</strong> International Business (High-Quality Program)</p>
@@ -280,8 +322,9 @@
             <p>✦ <strong>Focus:</strong> Marketing, Media Communication, Logistics & Languages.</p>
         </section>
 
-        <!-- 3. SKILLS (PURPLE) -->
         <section class="card card-purple">
+            <div class="washi-tape"></div>
+            <img src="link-anh-sticker-4.png" class="sticker stk-top-right" style="opacity: 0.3;" alt="Sticker Placeholder">
             <h3 class="bubble-font card-title">Skills</h3>
             <ul>
                 <li><strong>Languages:</strong> English (Fluent / Target 8.0+), Japanese (Intermediate / 3-year high school), Korea (Beginner)</li>
@@ -291,16 +334,18 @@
             </ul>
         </section>
 
-        <!-- 4. HOBBIES (LIME GREEN) -->
         <section class="card card-green">
+            <div class="washi-tape"></div>
+            <img src="link-anh-sticker-5.png" class="sticker stk-bottom-left" style="opacity: 0.3;" alt="Sticker Placeholder">
             <h3 class="bubble-font card-title">Hobbies</h3>
             <p>🎧 <strong>Music & Dance:</strong> Enjoys K-pop vibes, especially stanning ENHYPEN & Heeseung (Evan).</p>
             <p>🎀 <strong>Fashion:</strong> Obsessed with American Retro & Ulzzang styles, oversized fits.</p>
             <p>🍿 <strong>Movies & Hangouts:</strong> Enjoying movie nights, chilling with friends, and exploring new places.</p>
         </section>
 
-        <!-- 5. CONTACT (CYAN/TEAL) -->
         <section class="card card-cyan">
+            <div class="washi-tape"></div>
+            <img src="link-anh-sticker-6.png" class="sticker stk-bottom-right" style="opacity: 0.3;" alt="Sticker Placeholder">
             <h3 class="bubble-font card-title">Contact</h3>
             <p>Let's collaborate on a study project or just chat about aesthetics and K-pop! 💌</p>
             <br>
@@ -313,7 +358,7 @@
     </div>
 
     <footer style="text-align: center; margin-top: 5rem; color: #5c7ca8; font-weight: bold; text-shadow: 1px 1px 0px #fff; padding-bottom: 2rem;">
-        © 2026 Le Ngoc Trieu | Come and find me! ⋆
+        © 2026 Le Ngoc Trieu ⋆ All Rights Reserved
     </footer>
 
 </body>
